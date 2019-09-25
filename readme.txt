@@ -33,11 +33,34 @@ e.g.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Place `&amp;lt;?php do_action('plugin_name_hook'); ?&amp;gt;` in your templates
  
-== Changelog ==
+===== Change-log ======
 
-= 1.1.6 =
+= Version: 1.1.7 =	
+1. Added plugin update functionality from git.
 
-* Column Slider Widget added
-* Post Slider Widget added
-* Text Slider Widget added
-* Advanced Slider Widget added
+= Version: 1.1.6 =	
+1. Fixed mobile responsive issue in wp nav menu.
+
+= Version: 1.1.5 =	
+1. Updated the Font Awesome Icons Library.
+
+= Version: 1.1.4 =	
+1. Fixed issues sticky navigation issue.
+
+= Version: 1.1.3 =
+1. Fixed issues related to products title color.
+
+= Version: 1.1.2 =
+1. Added Some controls to the sticky nav addons.
+2. Added wp menu bar addon.
+
+= Version: 1.1.1 =
+1. Added Stickynav addon.
+2. Added Sticky section extend.
+
+= Version: 1.1.0 =
+1. Added the default slider.
+
+===============================
+= Version: 1.0.0 =
++ Initial Release
