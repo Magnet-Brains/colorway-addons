@@ -3,7 +3,7 @@ Contributors: inkthemes
 Donate link: http://inkthemes.com/
 Tags: elementor, element, pack, addon
 Requires at least: 4.6.0
-Tested up to: 4.9.8
+Tested up to: 5.2
 Requires PHP: 5.6.0
 Stable tag: 2.5.2
 License: GPL3
