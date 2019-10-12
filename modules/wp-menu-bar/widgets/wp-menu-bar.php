@@ -112,7 +112,7 @@ class WpMenuBar extends Widget_Base {
 				'type'  => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
-						'min' => 20,
+						'min' => 0,
 						'max' => 150,
 					],
 				],

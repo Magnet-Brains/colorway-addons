@@ -1,6 +1,9 @@
 # Change-log
  ===============================
 
+= Version: 1.1.8 =	
+1. Fixed wp menu bar height issue.
+
 = Version: 1.1.7 =	
 1. Added plugin update functionality from git.
 

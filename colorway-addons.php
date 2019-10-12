@@ -3,14 +3,14 @@
  * Plugin Name: ColorWay Addons
  * Plugin URI: https://www.inkthemes.com/colorway/
  * Description: With ColorWay Addons, get all the elements you'll ever need for your striking website. This plugin is a complete suite of sliders, e-commerce options and a lot more to take your website to another level.
- * Version: 1.1.7
+ * Version: 1.1.8
  * Author: InkThemes
  * Author URI: https://www.inkthemes.com/
  * Text Domain: colorway-addons 
  */
 
 // Some pre define value for easy use
-define( 'INKCA_VER', '1.1.7' );
+define( 'INKCA_VER', '1.1.8' );
 define( 'INKCA__FILE__', __FILE__ );
 define( 'INKCA_PNAME', basename( dirname(INKCA__FILE__)) );
 define( 'INKCA_PBNAME', plugin_basename(INKCA__FILE__) );
