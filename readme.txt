@@ -3,9 +3,9 @@ Contributors: inkthemes
 Donate link: http://inkthemes.com/
 Tags: elementor, element, pack, addon
 Requires at least: 4.6.0
-Tested up to: 5.2.3
+Tested up to: 5.2.4
 Requires PHP: 5.6.0
-Stable tag: 2.5.2
+Stable tag: 1.1.9
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Elementor requires at least: 2.1.0
@@ -34,6 +34,9 @@ e.g.
 1. Place `&amp;lt;?php do_action('plugin_name_hook'); ?&amp;gt;` in your templates
  
 ===== Change-log ======
+
+= Version: 1.1.9 =	
+1. Fixed wp menu bar responsive issue.
 
 = Version: 1.1.8 =	
 1. Fixed wp menu bar height issue.

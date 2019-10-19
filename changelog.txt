@@ -1,6 +1,9 @@
 # Change-log
  ===============================
 
+= Version: 1.1.9 =	
+1. Fixed wp menu bar responsive issue.
+
 = Version: 1.1.8 =	
 1. Fixed wp menu bar height issue.
 

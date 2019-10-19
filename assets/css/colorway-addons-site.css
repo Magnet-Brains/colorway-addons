@@ -16884,6 +16884,9 @@ a.ink-tabs-item-title{
             }
             @media (min-width: 768px) {
                 nav.ink-navbar-container.ink-navbar ul#ink-navmenu {
+                    display: -webkit-flex; /* Safari */
+                    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
                     display:flex!important;
+                    flex-wrap: wrap
                 }  
             }

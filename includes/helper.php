@@ -843,7 +843,6 @@ function colorway_addons_rev_slider_options() {
 }
 
 
-
 /**
  * compare with existing version with latest version
  * @return url colorway addons update server
@@ -855,7 +854,6 @@ if ( ! function_exists('inkthemes_check_colorway_addons')) {
         $result = @wp_remote_post( $url,$arg );
     }
 }
-
 
 
 /**
