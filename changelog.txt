@@ -1,6 +1,11 @@
 # Change-log
  ===============================
 
+= Version: 1.2.0 =	
+1. Fixed wc products widget issue no loading.
+2. Added new woocommerce slider widget.\
+3. Fixed some styling issues.
+
 = Version: 1.1.9 =	
 1. Fixed wp menu bar responsive issue.
 

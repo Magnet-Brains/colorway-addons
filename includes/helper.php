@@ -855,6 +855,30 @@ if ( ! function_exists('inkthemes_check_colorway_addons')) {
     }
 }
 
+function colorway_addons_get_category($terms, $cached = true) {
+
+    $data = get_transient( 'cw_get_category_' . $terms );
+
+    if ( false === $data ) {
+        $post_categories = get_terms( $terms );
+
+        $post_options = [];
+        foreach ( $post_categories as $category ) {
+            $post_options[ $category->slug ] = $category->name;
+        }
+
+        if ( true == $cached ) {
+            set_transient( 'cw_get_category_' . $terms, $post_options, MINUTE_IN_SECONDS );
+            $data = get_transient( 'cw_get_category_' . $terms );
+        } else {
+            $data = $post_options;
+        }
+
+    }
+
+    return $data;
+}
+
 
 /**
  * helper functions class for helping some common usage things

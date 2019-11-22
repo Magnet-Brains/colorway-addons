@@ -22,6 +22,7 @@ class Module extends Colorway_Addons_Module_Base {
 			'Elements',
 			'Categories',
 			'WC_Carousel',
+            'WC_Slider'
 		];
 	}
 

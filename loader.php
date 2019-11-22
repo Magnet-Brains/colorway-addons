@@ -48,7 +48,7 @@ class Colorway_Addons_Loader {
      */
     public function __clone() {
         // Cloning instances of the class is forbidden
-        _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'colorway-addons'), '1.1.9');
+        _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'colorway-addons'), '1.2.0');
     }
 
     /**
@@ -59,7 +59,7 @@ class Colorway_Addons_Loader {
      */
     public function __wakeup() {
         // Unserializing instances of the class is forbidden
-        _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'colorway-addons'), '1.1.9');
+        _doing_it_wrong(__FUNCTION__, esc_html__('Cheatin&#8217; huh?', 'colorway-addons'), '1.2.0');
     }
 
     /**
@@ -176,7 +176,7 @@ class Colorway_Addons_Loader {
 
         $suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 
-        wp_enqueue_script('ink-uikit', INKCA_URL . 'assets/js/ink-uikit' . $suffix . '.js', ['jquery'], INKCA_VER);
+        wp_enqueue_script('ink-uikit', INKCA_URL . 'assets/js/ink-uikit.js', ['jquery'], INKCA_VER);
         wp_enqueue_script('colorway-addons-site', INKCA_URL . 'assets/js/colorway-addons-site' . $suffix . '.js', ['jquery'], INKCA_VER);
 
         $locale_settings = [

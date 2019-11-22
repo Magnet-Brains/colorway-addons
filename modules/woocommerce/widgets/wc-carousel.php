@@ -134,65 +134,130 @@ class WC_Carousel extends Widget_Base {
 
 		$this->end_controls_section();
 
-		$this->start_controls_section(
-			'section_content_query',
-			[
-				'label' => esc_html__( 'Query', 'colorway-addons' ),
-			]
-		);
+        $this->start_controls_section(
+            'section_content_query',
+            [
+                'label' => esc_html__( 'Query', 'colorway-addons' ),
+            ]
+        );
 
-		$this->add_control(
-			'posts',
-			[
-				'label'   => esc_html__( 'Product Limit', 'colorway-addons' ),
-				'type'    => Controls_Manager::NUMBER,
-				'default' => 8,
-			]
-		);
+        $this->add_control(
+            'source',
+            [
+                'label'   => _x( 'Source', 'Posts Query Control', 'colorway-addons' ),
+                'type'    => Controls_Manager::SELECT,
+                'options' => [
+                    ''        => esc_html__( 'Show All', 'colorway-addons' ),
+                    'by_name' => esc_html__( 'Manual Selection', 'colorway-addons' ),
+                ],
+                'label_block' => true,
+            ]
+        );
 
-		$this->add_control(
-			'meta_key',
-			[
-				'label'   => esc_html__( 'Meta Key', 'colorway-addons' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'total_sales',
-				'options' => [
-					'total_sales'    => esc_html__( 'Total Sales', 'colorway-addons' ),
-					'_regular_price' => esc_html__( 'Regular Price', 'colorway-addons' ),
-					'_sale_price'    => esc_html__( 'Sale Price', 'colorway-addons' ),
-				],
-			]
-		);
 
-		$this->add_control(
-			'orderby',
-			[
-				'label'   => esc_html__( 'Order by', 'colorway-addons' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'date',
-				'options' => [
-					'date'     => esc_html__( 'Date', 'colorway-addons' ),
-					'title'    => esc_html__( 'Title', 'colorway-addons' ),
-					'category' => esc_html__( 'Category', 'colorway-addons' ),
-					'rand'     => esc_html__( 'Random', 'colorway-addons' ),
-				],
-			]
-		);
+        $product_categories = get_terms( 'product_cat' );
 
-		$this->add_control(
-			'order',
-			[
-				'label'   => esc_html__( 'Order', 'colorway-addons' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'DESC',
-				'options' => [
-					'DESC' => esc_html__( 'Descending', 'colorway-addons' ),
-					'ASC'  => esc_html__( 'Ascending', 'colorway-addons' ),
-				],
-			]
-		);
+        $options = [];
+        foreach ( $product_categories as $category ) {
+            $options[ $category->slug ] = $category->name;
+        }
 
-		$this->end_controls_section();
+        $this->add_control(
+            'product_categories',
+            [
+                'label'       => esc_html__( 'Categories', 'colorway-addons' ),
+                'type'        => Controls_Manager::SELECT2,
+                'options'     => $options,
+                'default'     => [],
+                'label_block' => true,
+                'multiple'    => true,
+                'condition'   => [
+                    'source'    => 'by_name',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'exclude_products',
+            [
+                'label'       => esc_html__( 'Exclude Product(s)', 'colorway-addons' ),
+                'type'        => Controls_Manager::TEXT,
+                'placeholder'     => 'product_id',
+                'label_block' => true,
+                'description' => __( 'Write product id here, if you want to exclude multiple products so use comma as separator. Such as 1 , 2', '' ),
+            ]
+        );
+
+        $this->add_control(
+            'posts',
+            [
+                'label'   => esc_html__( 'Product Limit', 'colorway-addons' ),
+                'type'    => Controls_Manager::NUMBER,
+                'default' => 8,
+            ]
+        );
+
+        $this->add_control(
+            'show_product_type',
+            [
+                'label'   => esc_html__( 'Show Product', 'colorway-addons' ),
+                'type'    => Controls_Manager::SELECT,
+                'default' => 'all',
+                'options' => [
+                    'all'      => esc_html__( 'All Products', 'colorway-addons' ),
+                    'onsale'   => esc_html__( 'On Sale', 'colorway-addons' ),
+                    'featured' => esc_html__( 'Featured', 'colorway-addons' ),
+                ],
+            ]
+        );
+
+
+        $this->add_control(
+            'hide_free',
+            [
+                'label'   => esc_html__( 'Hide Free', 'colorway-addons' ),
+                'type'    => Controls_Manager::SWITCHER,
+            ]
+        );
+
+
+        $this->add_control(
+            'hide_out_stock',
+            [
+                'label'   => esc_html__( 'Hide Out of Stock', 'colorway-addons' ),
+                'type'    => Controls_Manager::SWITCHER,
+            ]
+        );
+
+        $this->add_control(
+            'orderby',
+            [
+                'label'   => esc_html__( 'Order by', 'colorway-addons' ),
+                'type'    => Controls_Manager::SELECT,
+                'default' => 'date',
+                'options' => [
+                    'date'  => esc_html__( 'Date', 'colorway-addons' ),
+                    'price' => esc_html__( 'Price', 'colorway-addons' ),
+                    'sales' => esc_html__( 'Sales', 'colorway-addons' ),
+                    'rand'  => esc_html__( 'Random', 'colorway-addons' ),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'order',
+            [
+                'label'   => esc_html__( 'Order', 'colorway-addons' ),
+                'type'    => Controls_Manager::SELECT,
+                'default' => 'DESC',
+                'options' => [
+                    'DESC' => esc_html__( 'Descending', 'colorway-addons' ),
+                    'ASC'  => esc_html__( 'Ascending', 'colorway-addons' ),
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_carousel_settings',
@@ -201,7 +266,7 @@ class WC_Carousel extends Widget_Base {
 			]
 		);
 
-		
+
 
 		$this->add_control(
 			'autoplay_speed',
@@ -214,7 +279,7 @@ class WC_Carousel extends Widget_Base {
 				],
 			]
 		);
-                
+
                 $this->add_control(
 			'speed',
 			[
@@ -230,14 +295,14 @@ class WC_Carousel extends Widget_Base {
 				],
 			]
 		);
-                
+
                 $this->add_control(
 			'autoplay',
 			[
 				'label'   => __( 'Autoplay', 'colorway-addons' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
-				
+
 			]
 		);
 
@@ -247,11 +312,11 @@ class WC_Carousel extends Widget_Base {
 				'label'   => __( 'Loop', 'colorway-addons' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
-				
+
 			]
 		);
 
-		
+
 
 		$this->end_controls_section();
 
@@ -275,10 +340,10 @@ class WC_Carousel extends Widget_Base {
 					'none'   => __( 'None', 'colorway-addons' ),
 				],
 				'prefix_class' => 'ink-navigation-type-',
-				'render_type' => 'template',				
+				'render_type' => 'template',
 			]
 		);
-		
+
 		$this->add_control(
 			'both_position',
 			[
@@ -301,7 +366,19 @@ class WC_Carousel extends Widget_Base {
 				'options'   => colorway_addons_navigation_position(),
 				'condition' => [
 					'navigation' => 'arrows',
-				],				
+				],
+			]
+		);
+                
+                $this->add_control(
+			'hide_arrows',
+			[
+				'label'     => __( 'Hide Arrows on Moblile ?', 'colorway-addons' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'condition' => [
+					'navigation' => ['arrows', 'both'],
+				],
 			]
 		);
 
@@ -314,7 +391,7 @@ class WC_Carousel extends Widget_Base {
 				'options'   => colorway_addons_pagination_position(),
 				'condition' => [
 					'navigation' => 'dots',
-				],				
+				],
 			]
 		);
 
@@ -371,7 +448,7 @@ class WC_Carousel extends Widget_Base {
 				],
 			]
 		);
-		
+
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			[
@@ -1416,7 +1493,7 @@ class WC_Carousel extends Widget_Base {
 
 		if ('arrows' == $settings['navigation']) {
 			$this->add_render_attribute( 'carousel', 'class', 'ink-arrows-align-'. $settings['arrows_position'] );
-			
+
 		}
 		if ('dots' == $settings['navigation']) {
 			$this->add_render_attribute( 'carousel', 'class', 'ink-dots-align-'. $settings['dots_position'] );
@@ -1446,7 +1523,7 @@ class WC_Carousel extends Widget_Base {
 						<div class="swiper-pagination"></div>
 					</div>
 				<?php endif; ?>
-			<?php else : ?>			
+			<?php else : ?>
 				<?php $this->render_pagination(); ?>
 				<?php $this->render_navigation(); ?>
 			<?php endif; ?>
@@ -1458,16 +1535,21 @@ class WC_Carousel extends Widget_Base {
 
 	public function render_query() {
 		$settings = $this->get_settings();
-
+                $exclude_products = ($settings['exclude_products']) ? explode(',', $settings['exclude_products']) : [];
 		$args = array(
 			'post_type'           => 'product',
 			'post_status'         => 'publish',
 			'ignore_sticky_posts' => 1,
 			'posts_per_page'      => $settings['posts'],
 			'no_found_rows'       => true,
+                        'meta_query'          => [],
 			'meta_key'            => $settings['meta_key'],
 			'orderby'             => $settings['orderby'],
 			'order'               => $settings['order'],
+                        'tax_query'           => [ 'relation' => 'AND' ],
+			'order'               => $settings['order'],
+			'post__not_in'        => $exclude_products,
+
 		);
 
 		$wp_query = new \WP_Query($args);
@@ -1481,7 +1563,7 @@ class WC_Carousel extends Widget_Base {
 
 		$wp_query = $this->render_query();
 
-		if($wp_query->have_posts()) {			
+		if($wp_query->have_posts()) {
 
 			$this->add_render_attribute('wc-carousel-item', 'class', ['ink-wc-carousel-item', 'swiper-slide', 'ink-transition-toggle']);
 
@@ -1511,7 +1593,7 @@ class WC_Carousel extends Widget_Base {
 											<span class="wae-product-price"><?php woocommerce_template_single_price(); ?></span>
 										</div>
 						            <?php endif; ?>
-							               
+
 					               <?php if ('yes' == $settings['show_rating']) : ?>
 						               	<div class="ink-wc-rating ink-flex-right ink-width-expand">
 						           			<?php woocommerce_template_loop_rating(); ?>
@@ -1542,44 +1624,46 @@ class WC_Carousel extends Widget_Base {
 
 	protected function render_both_navigation() {
 		$settings = $this->get_settings();
+                $hide_arrows = $settings['hide_arrows'] ? 'ink-visible@m' : '';
 		?>
 
 		<div class="ink-position-z-index ink-position-<?php echo esc_attr($settings['both_position']); ?>">
 			<div class="ink-arrows-dots-container ink-slidenav-container ">
-				
+
 				<div class="ink-flex ink-flex-middle">
-					<div class="ink-visible@m">
-						<a href="" class="ink-navigation-prev ink-slidenav-previous ink-icon ink-slidenav" ink-icon="icon: chevron-left; ratio: 1.9"></a>	
+					<div class="<?php echo esc_attr( $hide_arrows ); ?>">
+						<a href="" class="ink-navigation-prev ink-slidenav-previous ink-icon ink-slidenav" ink-icon="icon: chevron-left; ratio: 1.9"></a>
 					</div>
 
 					<?php if ('center' !== $settings['both_position']) : ?>
 						<div class="swiper-pagination"></div>
 					<?php endif; ?>
-					
-					<div class="ink-visible@m">
-						<a href="" class="ink-navigation-next ink-slidenav-next ink-icon ink-slidenav" ink-icon="icon: chevron-right; ratio: 1.9"></a>		
+
+					<div class="<?php echo esc_attr( $hide_arrows ); ?>">
+						<a href="" class="ink-navigation-next ink-slidenav-next ink-icon ink-slidenav" ink-icon="icon: chevron-right; ratio: 1.9"></a>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
-		
+
 		<?php
 	}
 
 	protected function render_navigation() {
 		$settings = $this->get_settings();
+        $hide_arrows = $settings['hide_arrows'] ? ' ink-visible@m' : '';
 		?>
 
 		<?php if ( 'arrows' == $settings['navigation'] ) : ?>
-				<div class="ink-position-z-index ink-visible@m ink-position-<?php echo esc_attr($settings['arrows_position']); ?>">
+				<div class="ink-position-z-index ink-position-<?php echo esc_attr($settings['arrows_position'] . $hide_arrows); ?>">
 					<div class="ink-arrows-container ink-slidenav-container">
 						<a href="" class="ink-navigation-prev ink-slidenav-previous ink-icon ink-slidenav" ink-icon="icon: chevron-left; ratio: 1.9"></a>
 						<a href="" class="ink-navigation-next ink-slidenav-next ink-icon ink-slidenav" ink-icon="icon: chevron-right; ratio: 1.9"></a>
 					</div>
 				</div>
 		<?php endif; ?>
-		
+
 		<?php
 	}
 
@@ -1595,9 +1679,9 @@ class WC_Carousel extends Widget_Base {
 					</div>
 				</div>
 			<?php endif; ?>
-			
+
 		<?php endif; ?>
-		
+
 		<?php
 	}
 
@@ -1607,7 +1691,7 @@ class WC_Carousel extends Widget_Base {
 		?>
 		<script>
 			jQuery(document).ready(function($) {
-			    "use strict";				    
+			    "use strict";
 			    var swiper = new Swiper("#<?php echo esc_attr($id); ?> .swiper-container", {
 			        navigation: {
 						nextEl: "#<?php echo esc_attr($id); ?> .ink-navigation-next",

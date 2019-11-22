@@ -11177,13 +11177,13 @@
                     height$$1 = Math.min(this.maxHeight, height$$1);
                 }
 
-                return {height: height$$1};
+                return {height: height$$1 - boxModelAdjust(this.list, 'content-box')};
             },
 
             write: function(ref) {
                 var hgt = ref.height;
-
-                height(this.list, Math.floor(hgt));
+                hgt > 0 && css(this.list, 'minHeight', hgt);
+                //height(this.list, Math.floor(hgt));
             },
 
             events: ['load', 'resize']
